@@ -1,13 +1,13 @@
 {
-  "version": "0.1.1",
+  "version": "0.1.2",
 
-  "mailpoet_api_key": "your_mailpoet_api_key",
+  "mailpoet_api_key": "3780cc22ff4f27d57fc3b30841d33e32",
   "mailpoet_list_id": "3",
   "subcription_widget": {
     "enable": true,
-    "title": "Stay up to date",
-    "description": "Get notified when I publish something new, and unsubscribe at any time.",
-    "placeholder": "Enter your email address",
+    "title": "Aura Ajans",
+    "description": "Aura Ajans 2018 yılından bu yana markaların dijitalleşme süreçlerinde profesyonel destek vermek amacıyla kurulmuş kreatif bir dijital marka ve reklam ajansıdır.",
+    "placeholder": "Bülten aboneliği, E-Posta ?",
     "success_message": "Thank you for subscribing. You're in!",
     "error_message": "Something went wrong. Please try again. If the problem persists, you can contact me."
   },
@@ -20,10 +20,10 @@
   },
   "top_banner": {
     "enable": true,
-    "description": "-50% Intro price for the next 72 hours only!.",
+    "description": "Tüm hizmetlerde %50 indirim fırsatı için hemen bize ulaşın.",
     "end_link": {
-      "url": "#",
-      "text": "Buy now  →",
+      "url": "https://auraajans.net/iletisim",
+      "text": "Bize Ulaş  →",
       "new_tab": false
     }
   },
@@ -35,18 +35,18 @@
   },
 
   "site_info": {
-    "site_title": "Ncmaz Nextjs Blog",
-    "site_description": "Ncmaz Nextjs Blog headless WordPress",
-    "site_keywords": "Ncmaz Nextjs Blog",
-    "site_author": "ChisNghiax",
-    "site_email": "Your Email",
-    "site_phone": "Your Phone",
-    "site_address": "Your Address",
-    "site_city": "Your City",
-    "site_state": "Your State",
-    "site_zip": "Your Zip",
-    "site_country": "Your Country",
-    "site_url": "https://www.yoursite.com",
+    "site_title": "Aura Ajans Çanakkale",
+    "site_description": "Çanakkale Reklam Ajansı, Matbaa, Web tasarım, Tanıtım Filmi, Drone Çekimi, Otel çekimi Çanakkale",
+    "site_keywords": "otel tanıtım, çanakkale reklam ajansı, web sitesi, web tasarım, grafik tasarım, matbaa,",
+    "site_author": "Aura Ajans",
+    "site_email": "info@auraajans.com",
+    "site_phone": "0850 346 25 01",
+    "site_address": "Barbaros mh. troya cd. no:52/a",
+    "site_city": "Merkez",
+    "site_state": "Çanakkale",
+    "site_zip": "17010",
+    "site_country": "Türkiye",
+    "site_url": "https://www.auraajans.net",
     "site_logo": "/logo.png",
     "site_logo_light": "/logo-light.png",
     "site_favicon": "/favicon.png"
@@ -55,33 +55,27 @@
   "site_socials": [
     {
       "name": "facebook",
-      "url": "https://www.facebook.com/yourfacebookpage",
+      "url": "https://www.facebook.com/auraajans17/",
       "icon": "/images/socials/facebook.svg",
-      "description": "Follow us on Facebook"
+      "description": "Facebook'ta bizi takip et."
     },
     {
       "name": "twitter",
-      "url": "https://twitter.com/yourtwitterpage",
+      "url": "https://twitter.com/auraajans_",
       "icon": "/images/socials/x-twitter.svg",
-      "description": "Follow us on Twitter"
+      "description": "X'te Bizi Takip Et."
     },
 
     {
-      "name": "github",
-      "url": "https://www.github.com/yourmediumpage",
-      "icon": "/images/socials/github.svg",
-      "description": "Follow us on Github"
-    },
-    {
-      "name": "tiktok",
-      "url": "https://www.tiktok.com/yourtiktokpage",
-      "icon": "/images/socials/tiktok.svg",
-      "description": "Follow us on Tiktok"
+      "name": "Instagram",
+      "url": "https://www.instagram.com/auraajans_",
+      "icon": "/images/socials/instagram.svg",
+      "description": "Instagram'da Bizi Takip Et"
     }
   ],
 
   "site_footer": {
-    "all_rights_reserved_text": "© 2023 ChisNghiax Company, Inc. All rights reserved."
+    "all_rights_reserved_text": "© 2024 Aura Medya Company, All rights reserved."
   },
 
   "submissions-settings": {
@@ -127,11 +121,11 @@
     "sub_title": "Read and share new perspectives on just about any topic. Everyone’s welcome."
   },
   "cookies_policy_page": {
-    "uri": "#"
+    "uri": "https://auraajans.net/cerez-politikasi"
   },
 
   "empty_state": {
-    "title": "No results found.",
-    "description": "We couldn’t find any results. Try for something else."
+    "title": "Sonuç bulunamadı!",
+    "description": "Herhangi bir sonuç bulamadık. Başka bir şey deneyin."
   }
 }

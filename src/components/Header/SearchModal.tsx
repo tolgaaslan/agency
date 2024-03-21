@@ -295,17 +295,16 @@ const SearchModal: FC<Props> = ({ renderTrigger }) => {
                           aria-hidden="true"
                         />
                         <p className="mt-4 font-semibold text-gray-900">
-                          No results found
+                          Sonuç bulunamadı!
                         </p>
                         <p className="mt-2 text-gray-500">
-                          We couldn’t find anything with that term. Please try
-                          again.
+                          Üzgünüm aradığın şeyi bulamadım.
                         </p>
                       </div>
                     )}
 
                   <div className="flex flex-wrap items-center bg-gray-50 py-2.5 px-4 text-xs text-gray-700">
-                    Type enter to go to search page
+                    Arama için enter'a basın.
                   </div>
                 </Combobox>
               </Dialog.Panel>
