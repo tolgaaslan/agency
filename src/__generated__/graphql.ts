@@ -109,8 +109,14 @@ export type Category = DatabaseIdentifier & HierarchicalNode & HierarchicalTermN
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -548,7 +554,7 @@ export type CategoryToTaxonomyConnectionEdge = Edge & OneToOneConnection & Taxon
 };
 
 /** A Comment object */
-export type Comment = DatabaseIdentifier & Node & {
+export type Comment = DatabaseIdentifier & Node & UniformResourceIdentifiable & {
   __typename?: 'Comment';
   /** User agent used to post the comment. This field is equivalent to WP_Comment-&gt;comment_agent and the value matching the &quot;comment_agent&quot; column in SQL. */
   agent?: Maybe<Scalars['String']['output']>;
@@ -568,6 +574,8 @@ export type Comment = DatabaseIdentifier & Node & {
   commentId?: Maybe<Scalars['Int']['output']>;
   /** Connection between the Comment type and the ContentNode type */
   commentedOn?: Maybe<CommentToContentNodeConnectionEdge>;
+  /** @deprecated Deprecated in favor of using Next.js pages */
+  conditionalTags?: Maybe<ConditionalTags>;
   /** Content of the comment. This field is equivalent to WP_Comment-&gt;comment_content and the value matching the &quot;comment_content&quot; column in SQL. */
   content?: Maybe<Scalars['String']['output']>;
   /** The unique identifier stored in the database */
@@ -578,10 +586,22 @@ export type Comment = DatabaseIdentifier & Node & {
   dateGmt?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the comment object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
+  /** Whether the node is a Content Node */
+  isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
+  /** Whether the node is a Term */
+  isTermNode: Scalars['Boolean']['output'];
   /** Karma value for the comment. This field is equivalent to WP_Comment-&gt;comment_karma and the value matching the &quot;comment_karma&quot; column in SQL. */
   karma?: Maybe<Scalars['Int']['output']>;
+  /** The permalink of the comment */
+  link?: Maybe<Scalars['String']['output']>;
   /** Connection between the Comment type and the Comment type */
   parent?: Maybe<CommentToParentCommentConnectionEdge>;
   /** The database id of the parent comment node or null if it is the root comment */
@@ -592,8 +612,11 @@ export type Comment = DatabaseIdentifier & Node & {
   replies?: Maybe<CommentToCommentConnection>;
   /** The approval status of the comment. This field is equivalent to WP_Comment-&gt;comment_approved and the value matching the &quot;comment_approved&quot; column in SQL. */
   status?: Maybe<CommentStatusEnum>;
+  templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   /** Type of comment. This field is equivalent to WP_Comment-&gt;comment_type and the value matching the &quot;comment_type&quot; column in SQL. */
   type?: Maybe<Scalars['String']['output']>;
+  /** The unique resource identifier path */
+  uri?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -1066,6 +1089,50 @@ export type Connection = {
   pageInfo: PageInfo;
 };
 
+/** A block used for editing the site */
+export type ContactForm7ContactFormSelector = EditorBlock & PageEditorBlock & PostEditorBlock & {
+  __typename?: 'ContactForm7ContactFormSelector';
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']['output']>;
+  /** Attributes of the ContactForm7ContactFormSelector Block Type */
+  attributes?: Maybe<ContactForm7ContactFormSelectorAttributes>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']['output']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean']['output'];
+  /** The name of the block */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']['output']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']['output']>;
+};
+
+/** Attributes of the ContactForm7ContactFormSelector Block Type */
+export type ContactForm7ContactFormSelectorAttributes = {
+  __typename?: 'ContactForm7ContactFormSelectorAttributes';
+  /** The &quot;hash&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  hash?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlClass&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  htmlClass?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlId&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  htmlId?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlName&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  htmlName?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlTitle&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  htmlTitle?: Maybe<Scalars['String']['output']>;
+  /** The &quot;id&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  id?: Maybe<Scalars['Int']['output']>;
+  /** The &quot;title&quot; field on the &quot;ContactForm7ContactFormSelector&quot; block */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 /** Nodes used to manage content */
 export type ContentNode = {
   /** @deprecated Deprecated in favor of using Next.js pages */
@@ -1094,8 +1161,14 @@ export type ContentNode = {
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -1311,6 +1384,8 @@ export type ContentType = Node & UniformResourceIdentifiable & {
   hierarchical?: Maybe<Scalars['Boolean']['output']>;
   /** The globally unique identifier of the post-type object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
   /** Whether this page is set to the static front page. */
@@ -7490,8 +7565,14 @@ export type GraphqlDocument = ContentNode & DatabaseIdentifier & Node & NodeWith
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the graphql_document object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -7658,8 +7739,14 @@ export type GraphqlDocumentGroup = DatabaseIdentifier & Node & TermNode & Unifor
   graphqlDocuments?: Maybe<GraphqlDocumentGroupToGraphqlDocumentConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -8134,8 +8221,14 @@ export type HierarchicalContentNode = {
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -8392,8 +8485,14 @@ export type HierarchicalTermNode = {
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -8582,8 +8681,14 @@ export type MediaItem = ContentNode & DatabaseIdentifier & HierarchicalContentNo
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the attachment object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -9116,8 +9221,14 @@ export type MenuItemLinkable = {
   databaseId: Scalars['Int']['output'];
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
   templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -10479,6 +10590,8 @@ export type Page = ContentNode & DatabaseIdentifier & HierarchicalContentNode & 
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the page object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
   /** Whether this page is set to the static front page. */
@@ -11000,8 +11113,14 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the post object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -11261,8 +11380,14 @@ export type PostFormat = DatabaseIdentifier & MenuItemLinkable & Node & TermNode
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -14829,8 +14954,14 @@ export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & Unif
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -15335,8 +15466,14 @@ export type TermNode = {
   enqueuedStylesheets?: Maybe<TermNodeToEnqueuedStylesheetConnection>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -15567,8 +15704,14 @@ export type UniformResourceIdentifiable = {
   conditionalTags?: Maybe<ConditionalTags>;
   /** The globally unique ID for the object */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the node is a Term */
   isTermNode: Scalars['Boolean']['output'];
   templates?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -16104,8 +16247,14 @@ export type User = Commenter & DatabaseIdentifier & Node & UniformResourceIdenti
   firstName?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier for the user object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is restricted from the current viewer */
   isRestricted?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the node is a Term */
@@ -16331,8 +16480,14 @@ export type UserReactionPost = ContentNode & DatabaseIdentifier & MenuItemLinkab
   guid?: Maybe<Scalars['String']['output']>;
   /** The globally unique identifier of the user-reaction-post object. */
   id: Scalars['ID']['output'];
+  /** Whether the node is a Comment */
+  isComment: Scalars['Boolean']['output'];
   /** Whether the node is a Content Node */
   isContentNode: Scalars['Boolean']['output'];
+  /** Whether the node represents the front page. */
+  isFrontPage: Scalars['Boolean']['output'];
+  /** Whether  the node represents the blog page. */
+  isPostsPage: Scalars['Boolean']['output'];
   /** Whether the object is a node in the preview state */
   isPreview?: Maybe<Scalars['Boolean']['output']>;
   /** Whether the object is restricted from the current viewer */
@@ -17929,7 +18084,7 @@ export type PageArchiveGetArchiveQueryVariables = Exact<{
 }>;
 
 
-export type PageArchiveGetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', uri?: string | null, id: string } | { __typename?: 'ContentType', uri?: string | null, id: string } | { __typename?: 'GraphqlDocument', uri?: string | null, id: string } | { __typename?: 'GraphqlDocumentGroup', uri?: string | null, id: string } | { __typename?: 'MediaItem', uri?: string | null, id: string } | { __typename?: 'Page', uri?: string | null, id: string } | { __typename?: 'Post', uri?: string | null, id: string } | (
+export type PageArchiveGetArchiveQuery = { __typename?: 'RootQuery', nodeByUri?: { __typename?: 'Category', uri?: string | null, id: string } | { __typename?: 'Comment', uri?: string | null, id: string } | { __typename?: 'ContentType', uri?: string | null, id: string } | { __typename?: 'GraphqlDocument', uri?: string | null, id: string } | { __typename?: 'GraphqlDocumentGroup', uri?: string | null, id: string } | { __typename?: 'MediaItem', uri?: string | null, id: string } | { __typename?: 'Page', uri?: string | null, id: string } | { __typename?: 'Post', uri?: string | null, id: string } | (
     { __typename?: 'PostFormat', uri?: string | null, id: string, posts?: { __typename?: 'PostFormatToPostConnection', nodes: Array<(
         { __typename?: 'Post' }
         & { ' $fragmentRefs'?: { 'NcmazFcPostCardFieldsFragment': NcmazFcPostCardFieldsFragment } }
@@ -17985,7 +18140,7 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
+export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'ContactForm7ContactFormSelector', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
       { __typename: 'CoreColumn', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null }
       & { ' $fragmentRefs'?: { 'CoreColumnFragmentFragment': CoreColumnFragmentFragment } }
     ) | (

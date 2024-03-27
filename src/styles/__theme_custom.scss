@@ -1,12 +1,5 @@
-.ttnc-logo img{
-  width: 10.5em;
-}
 
-@media (max-width: 1024px) {
-  .mobile-d-none {
-    display:none;
-  }
-}
+
 
 /* Hide scrollbar for Chrome, Safari and Opera */
 .hiddenScrollbar::-webkit-scrollbar {
@@ -258,4 +251,14 @@
 .dark .react-loading-skeleton {
   --base-color: #4b5563;
   --highlight-color: #58626e;
+}
+
+@media (max-width: 1024px) {
+  .mobile-d-none {
+    display:none;
+  }
+}
+
+.ttnc-logo img{
+  width: 10.5em;
 }
