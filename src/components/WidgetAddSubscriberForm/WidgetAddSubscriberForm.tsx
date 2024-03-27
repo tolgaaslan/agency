@@ -28,8 +28,8 @@ const WidgetAddSubscriberForm: FC<Props> = ({
           {NC_SITE_SETTINGS.subcription_widget.description}
         </span>
         <div className="mt-4">
-        <a href="https://auraajans.net/hakkimizda" target="_self" class="whitespace-nowrap font-semibold">Hakkımızda  →</a>
-        <a href="https://auraajans.net/iletisim" target="_self" class="whitespace-nowrap font-semibold float-right">İletişim  →</a>
+        <a href="https://auraajans.net/hakkimizda" target="_self" className="whitespace-nowrap font-semibold">Hakkımızda  →</a>
+        <a href="https://auraajans.net/iletisim" target="_self" className="whitespace-nowrap font-semibold float-right">İletişim  →</a>
         </div>
       </div>
     </div>
