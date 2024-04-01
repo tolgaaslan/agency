@@ -90,7 +90,7 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
 
           <div className="flex-1 flex justify-end">
             <Navigation
-              maxItemsToShow={3}
+              maxItemsToShow={5}
               menuItems={menuItems}
               variation="nav2"
               className="hidden lg:flex"
@@ -98,7 +98,7 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
             <div className="hidden md:block border-l border-neutral-200 dark:border-neutral-700 self-center h-8 mx-2"></div>
             <CreateBtn className="self-center" />
             <SwitchDarkMode className="self-center" />
-            <AvatarDropdown className="self-center" />
+            
           </div>
         </div>
       </div>

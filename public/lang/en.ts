@@ -19,7 +19,7 @@ export default {
   Cancel: "Vazgeç",
   Apply: "Uygula",
   Image: "Fotoğraf",
-  Create: "Oluştur",
+  Create: "Teklif",
   "Please wait a moment, data is being prepared.":
     "Veriler derleniyor, lütfen bekleyin.",
   "Edit profile": "Profili düzenle",

@@ -265,3 +265,10 @@
 .sm\:w-14 {
   width: 7.5rem;
 }
+
+.wp-block-columns.are-vertically-aligned-center, .wp-block-columns.wp-block-columns-is-layout-flex {
+  align-items: center !important;
+}
+.wp-block-image.aligncenter img {
+  margin:0 auto;
+}
