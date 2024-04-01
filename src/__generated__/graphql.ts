@@ -708,13 +708,13 @@ export enum CommentNodeIdTypeEnum {
 
 /** The status of the comment object. */
 export enum CommentStatusEnum {
-  /** Comments with the Onaylanmış status */
+  /** Comments with the Approved status */
   Approve = 'APPROVE',
-  /** Comments with the Onaylanmamış status */
+  /** Comments with the Unapproved status */
   Hold = 'HOLD',
-  /** Comments with the İstenmeyen status */
+  /** Comments with the Spam status */
   Spam = 'SPAM',
-  /** Comments with the Çöpte status */
+  /** Comments with the Trash status */
   Trash = 'TRASH'
 }
 
@@ -7263,9 +7263,9 @@ export type DeleteUserReactionPostPayload = {
 /** The discussion setting type */
 export type DiscussionSettings = {
   __typename?: 'DiscussionSettings';
-  /** İnsanlar yeni yazılara yorum yapabilsin. */
+  /** Allow people to submit comments on new posts. */
   defaultCommentStatus?: Maybe<Scalars['String']['output']>;
-  /** Diğer bloglardan yeni makaleler için bağlantı bildirimleri (geri bağlantılar ve geri izlemeler) yapılabilsin. */
+  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
   defaultPingStatus?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7470,23 +7470,23 @@ export type EnqueuedStylesheetConnectionPageInfo = {
 /** The general setting type */
 export type GeneralSettings = {
   __typename?: 'GeneralSettings';
-  /** Tüm tarih dizgeleri için tarih biçimi. */
+  /** A date format for all date strings. */
   dateFormat?: Maybe<Scalars['String']['output']>;
-  /** Site sloganı. */
+  /** Site tagline. */
   description?: Maybe<Scalars['String']['output']>;
-  /** Bu adres, yeni kullanıcı bildirimleri gibi yönetim işlemleri için kullanılır. */
+  /** This address is used for admin purposes, like new user notification. */
   email?: Maybe<Scalars['String']['output']>;
-  /** WordPress yerel kodu. */
+  /** WordPress locale code. */
   language?: Maybe<Scalars['String']['output']>;
-  /** Haftanın hangi günde başlayacağını gösteren günün hafta içindeki numarası. */
+  /** A day number of the week that the week should start on. */
   startOfWeek?: Maybe<Scalars['Int']['output']>;
-  /** Tüm zaman dizgeleri için zaman biçimi. */
+  /** A time format for all time strings. */
   timeFormat?: Maybe<Scalars['String']['output']>;
-  /** Sizinle aynı saat diliminde bir il. */
+  /** A city in the same timezone as you. */
   timezone?: Maybe<Scalars['String']['output']>;
-  /** Site başlığı. */
+  /** Site title. */
   title?: Maybe<Scalars['String']['output']>;
-  /** Site adresi. */
+  /** Site URL. */
   url?: Maybe<Scalars['String']['output']>;
 };
 
@@ -12404,13 +12404,13 @@ export type Previewable = {
 /** The reading setting type */
 export type ReadingSettings = {
   __typename?: 'ReadingSettings';
-  /** Son yazıların görüntüleneceği sayfanın kimliği */
+  /** The ID of the page that should display the latest posts */
   pageForPosts?: Maybe<Scalars['Int']['output']>;
-  /** Ön sayfada görüntülenmesi gereken sayfanın kimliği */
+  /** The ID of the page that should be displayed on the front page */
   pageOnFront?: Maybe<Scalars['Int']['output']>;
-  /** En fazla blog sayfaları gözükür. */
+  /** Blog pages show at most. */
   postsPerPage?: Maybe<Scalars['Int']['output']>;
-  /** Ön sayfada görüntülenecekler */
+  /** What to show on the front page */
   showOnFront?: Maybe<Scalars['String']['output']>;
 };
 
@@ -15437,15 +15437,15 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
 };
 
 /** The template assigned to the node */
-export type Template_BlogAlternatif = ContentTemplate & {
-  __typename?: 'Template_BlogAlternatif';
+export type Template_Blank = ContentTemplate & {
+  __typename?: 'Template_Blank';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
 /** The template assigned to the node */
-export type Template_Bo = ContentTemplate & {
-  __typename?: 'Template_Bo';
+export type Template_BlogAlternative = ContentTemplate & {
+  __typename?: 'Template_BlogAlternative';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -16038,41 +16038,41 @@ export type UpdatePostPayload = {
 export type UpdateSettingsInput = {
   /** This is an ID that can be passed to a mutation by the client to track the progress of mutations and catch possible duplicate mutation submissions. */
   clientMutationId?: InputMaybe<Scalars['String']['input']>;
-  /** İnsanlar yeni yazılara yorum yapabilsin. */
+  /** Allow people to submit comments on new posts. */
   discussionSettingsDefaultCommentStatus?: InputMaybe<Scalars['String']['input']>;
-  /** Diğer bloglardan yeni makaleler için bağlantı bildirimleri (geri bağlantılar ve geri izlemeler) yapılabilsin. */
+  /** Allow link notifications from other blogs (pingbacks and trackbacks) on new articles. */
   discussionSettingsDefaultPingStatus?: InputMaybe<Scalars['String']['input']>;
-  /** Tüm tarih dizgeleri için tarih biçimi. */
+  /** A date format for all date strings. */
   generalSettingsDateFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Site sloganı. */
+  /** Site tagline. */
   generalSettingsDescription?: InputMaybe<Scalars['String']['input']>;
-  /** Bu adres, yeni kullanıcı bildirimleri gibi yönetim işlemleri için kullanılır. */
+  /** This address is used for admin purposes, like new user notification. */
   generalSettingsEmail?: InputMaybe<Scalars['String']['input']>;
-  /** WordPress yerel kodu. */
+  /** WordPress locale code. */
   generalSettingsLanguage?: InputMaybe<Scalars['String']['input']>;
-  /** Haftanın hangi günde başlayacağını gösteren günün hafta içindeki numarası. */
+  /** A day number of the week that the week should start on. */
   generalSettingsStartOfWeek?: InputMaybe<Scalars['Int']['input']>;
-  /** Tüm zaman dizgeleri için zaman biçimi. */
+  /** A time format for all time strings. */
   generalSettingsTimeFormat?: InputMaybe<Scalars['String']['input']>;
-  /** Sizinle aynı saat diliminde bir il. */
+  /** A city in the same timezone as you. */
   generalSettingsTimezone?: InputMaybe<Scalars['String']['input']>;
-  /** Site başlığı. */
+  /** Site title. */
   generalSettingsTitle?: InputMaybe<Scalars['String']['input']>;
-  /** Site adresi. */
+  /** Site URL. */
   generalSettingsUrl?: InputMaybe<Scalars['String']['input']>;
-  /** Son yazıların görüntüleneceği sayfanın kimliği */
+  /** The ID of the page that should display the latest posts */
   readingSettingsPageForPosts?: InputMaybe<Scalars['Int']['input']>;
-  /** Ön sayfada görüntülenmesi gereken sayfanın kimliği */
+  /** The ID of the page that should be displayed on the front page */
   readingSettingsPageOnFront?: InputMaybe<Scalars['Int']['input']>;
-  /** En fazla blog sayfaları gözükür. */
+  /** Blog pages show at most. */
   readingSettingsPostsPerPage?: InputMaybe<Scalars['Int']['input']>;
-  /** Ön sayfada görüntülenecekler */
+  /** What to show on the front page */
   readingSettingsShowOnFront?: InputMaybe<Scalars['String']['input']>;
-  /** Varsayılan yazı kategorisi. */
+  /** Default post category. */
   writingSettingsDefaultCategory?: InputMaybe<Scalars['Int']['input']>;
-  /** Varsayılan yazı biçimi. */
+  /** Default post format. */
   writingSettingsDefaultPostFormat?: InputMaybe<Scalars['String']['input']>;
-  /** :-) ve :-P gibi ifadeleri görüntülerken grafiklere çevir. */
+  /** Convert emoticons like :-) and :-P to graphics on display. */
   writingSettingsUseSmilies?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -17368,11 +17368,11 @@ export type WithAcfNcmazfaustMenu = {
 /** The writing setting type */
 export type WritingSettings = {
   __typename?: 'WritingSettings';
-  /** Varsayılan yazı kategorisi. */
+  /** Default post category. */
   defaultCategory?: Maybe<Scalars['Int']['output']>;
-  /** Varsayılan yazı biçimi. */
+  /** Default post format. */
   defaultPostFormat?: Maybe<Scalars['String']['output']>;
-  /** :-) ve :-P gibi ifadeleri görüntülerken grafiklere çevir. */
+  /** Convert emoticons like :-) and :-P to graphics on display. */
   useSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
