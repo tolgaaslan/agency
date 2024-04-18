@@ -289,3 +289,8 @@
 .lg\:prose-lg :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   margin-top: 0.577778em;
 }
+
+.footer-button-custom {
+  color: #fff !important;
+  padding:10px!important;
+}

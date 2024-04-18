@@ -13,7 +13,7 @@ export default {
   "Lost your password?": "Şifremi Unuttum!",
   "Reading list": "Okuma Listesi",
   "Show me more": "Daha fazla",
-  Tags: "Tags",
+  Tags: "Etiket",
   "Edit image": "Fotoğrafı düzenle",
   "Delete image": "Fotoğrafı sil",
   Cancel: "Vazgeç",

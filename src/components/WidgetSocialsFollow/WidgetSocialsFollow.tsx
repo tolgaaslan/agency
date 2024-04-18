@@ -14,7 +14,7 @@ const WidgetSocialsFollow: FC<WidgetSocialsFollowProps> = ({
 }) => {
   return (
     <div className={`nc-WidgetSocialsFollow overflow-hidden ${className}`}>
-      <WidgetHeading1 title="🧬 We are on socials" />
+      <WidgetHeading1 title="🧬 Takip Edin" />
       <div className="grid grid-cols-2">
         {socials.map((social, idex) => (
           <a

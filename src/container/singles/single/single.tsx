@@ -7,7 +7,8 @@ import { NC_POST_FULL_FRAGMENT } from "@/fragments";
 
 export interface SingleType1Props {
   post: FragmentType<typeof NC_POST_FULL_FRAGMENT>;
-  showRightSidebar?: boolean;
+  
+  showRightSidebar?: 1;
 }
 
 const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {

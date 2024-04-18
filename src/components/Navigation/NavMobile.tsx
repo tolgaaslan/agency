@@ -169,7 +169,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
             type="search"
             name="mbsearch"
             id="mbsearch"
-            placeholder="Type and press enter"
+            placeholder="Ne Aramıştınız ?"
             className="border-none bg-transparent focus:outline-none focus:ring-0 w-full text-sm "
           />
         </div>

@@ -9,10 +9,12 @@ export interface SidebarProps {
   categories: TCategoryCardFull[] | null;
 }
 
+
 export const Sidebar: FC<SidebarProps> = ({
   className = "space-y-6 ",
   categories,
 }) => {
+ 
   return (
     <div className={`nc-SingleSidebar ${className}`}>
       <WidgetAddSubscriberForm />

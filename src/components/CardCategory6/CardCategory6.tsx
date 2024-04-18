@@ -44,7 +44,7 @@ const CardCategory6: FC<CardCategory6Props> = ({
             size === "large" ? "text-sm" : "text-xs"
           } block mt-[2px] text-neutral-500 dark:text-neutral-400`}
         >
-          {count || 0} Articles
+          {count || 0} Proje
         </span>
       </div>
     </Link>
