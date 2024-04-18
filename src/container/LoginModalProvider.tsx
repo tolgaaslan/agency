@@ -82,6 +82,8 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
     }
   };
 
+  
+
   const renderContent = (closeModal: () => void) => {
     return (
 
@@ -100,7 +102,7 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
             
           </div>
 
-          <iframe width="100%" height="100%" scrolling="no" frameborder="0" src="https://yonetim.auramedya.org/?mailpoet_form_iframe=1" class="mailpoet_form_iframe" id="mailpoet_form_iframe" vspace="0" tabindex="0" onload={"var _this = this; window.addEventListener('message', function(e) {if(e.data.MailPoetIframeHeight){_this.style.height = e.data.MailPoetIframeHeight;}})"} marginwidth="0" marginheight="0" hspace="0" allowtransparency="true"></iframe> 
+          <iframe width="100%" height="100%" scrolling="no" frameborder="0" src="https://yonetim.auramedya.org/?mailpoet_form_iframe=1" class="mailpoet_form_iframe" id="mailpoet_form_iframe" vspace="0" tabindex="0" onload="" marginwidth="0" marginheight="0" hspace="0" allowtransparency="true"></iframe>
           
         </div>
       </div>
