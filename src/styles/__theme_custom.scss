@@ -282,3 +282,10 @@
 .max-w-2xl {
   max-width: 100%!important;
 }
+
+.ncmazfc-block-heading__subHeading {
+  margin: 1rem auto;
+}
+.lg\:prose-lg :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
+  margin-top: 0.577778em;
+}
