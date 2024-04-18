@@ -48,6 +48,7 @@ export default {
   "Favorites list": "Favori listesi",
   Bookmarks: "Yer imleri",
   "Sign in to your account": "Hesabımla giriş yap",
+  "Quick Quote":"Hızlı Fiyat Teklifi",
   "Copy link": "Bağlantıyı kopyala",
   "Link copied to clipboard": "Bağlantı clipboard'a kopyalandı.",
   Submit: "Gönder",

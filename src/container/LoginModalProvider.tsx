@@ -89,13 +89,9 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
           <Logo className="block w-full text-center" imageClassName="mx-auto" />
           <div className="text-center">
             <h2 className="mt-5 sm:mt-7 text-center text-xl md:text-2xl font-semibold leading-9 tracking-tight text-neutral-900 dark:text-neutral-200">
-              {T["Sign in to your account"]}
+              {T["Quick Quote"]}
             </h2>
-            {IS_CHISNGHIAX_DEMO_SITE && (
-              <span className="text-xs text-neutral-500 dark:text-neutral-400">
-                Try sing in with a demo account (demo/demo).
-              </span>
-            )}
+            
           </div>
         </div>
         <div className="mt-5 sm:mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
