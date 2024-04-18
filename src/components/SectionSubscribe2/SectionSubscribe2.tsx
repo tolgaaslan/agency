@@ -9,7 +9,7 @@ export interface SectionSubscribe2Props {
 }
 
 const SectionSubscribe2: FC<SectionSubscribe2Props> = ({ className = "" }) => {
-  if (NC_SITE_SETTINGS.newsletter_section.enable === false) {
+  if (NC_SITE_SETTINGS.newsletter_section.enable === true) {
     return null;
   }
 
