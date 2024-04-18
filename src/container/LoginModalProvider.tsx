@@ -102,8 +102,8 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
             
           </div>
 
-          <iframe width="100%" height="100%" src="https://yonetim.auramedya.org/?mailpoet_form_iframe=1" data-class="mailpoet_form_iframe" id="mailpoet_form_iframe" ></iframe>
-          
+          <iframe width="100%" height="580px" src="https://yonetim.auramedya.org/?mailpoet_form_iframe=1" data-class="mailpoet_form_iframe" id="mailpoet_form_iframe" data-onload="var _this = this; window.addEventListener('message', function(e) {if(e.data.MailPoetIframeHeight){_this.style.height = e.data.MailPoetIframeHeight;}})"></iframe>
+         
         </div>
       </div>
 
