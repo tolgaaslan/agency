@@ -84,6 +84,7 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
 
   const renderContent = (closeModal: () => void) => {
     return (
+
       <div className="flex min-h-full flex-1 flex-col justify-center py-2.5 sm:p-6 lg:pb-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <Logo className="block w-full text-center" imageClassName="mx-auto" />
@@ -96,86 +97,107 @@ const LoginModalProvider: FC<LoginModalProviderProps> = ({ children }) => {
         </div>
         <div className="mt-5 sm:mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <div className="grid gap-6">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-
-                if (
-                  !e.currentTarget.username?.value ||
-                  !e.currentTarget.password?.value
-                ) {
-                  toast.error("Username and password are required!", {
-                    position: "bottom-center",
-                  });
-                  return;
-                }
-
-                login(
-                  e.currentTarget.username.value,
-                  e.currentTarget.password.value
-                  // "/"
-                );
-              }}
-            >
-              <div className="grid gap-4">
-                <div className="grid gap-1.5">
-                  <Label htmlFor="email">{T.Username}</Label>
-                  <Input
-                    id="username"
-                    name="username"
-                    placeholder="Email or username"
-                    autoCapitalize="none"
-                    autoComplete="username"
-                    autoCorrect="off"
-                    type="text"
-                    required
-                    defaultValue={IS_CHISNGHIAX_DEMO_SITE ? "demo" : undefined}
-                  />
-                </div>
-                <div className="grid gap-1.5">
-                  <Label htmlFor="password">{T.Password}</Label>
-                  <Input
-                    id="password"
-                    type="password"
-                    required
-                    defaultValue={IS_CHISNGHIAX_DEMO_SITE ? "demo" : undefined}
-                  />
-                </div>
-                <div className="grid">
-                  <ButtonPrimary loading={loading}>{T.Login}</ButtonPrimary>
-                  {!!errorMessage && (
-                    <Error className="text-center mt-2" error={errorMessage} />
-                  )}
-                </div>
-              </div>
-            </form>
+            
           </div>
 
-          <p className="mt-5 sm:mt-10 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
-            {T["Not a member?"]}?{" "}
-            <Link
-              href="/sign-up"
-              className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 hover:underline underline-offset-2"
-              onClick={closeModal}
-            >
-              {T["Sign up"]}!
-            </Link>
-            <span className="mx-1">|</span>
-            <a
-              href={
-                NC_SITE_SETTINGS.signIn_page.lost_password
-                  .url_lostpassword_default_of_wp
-              }
-              target="_blank"
-              rel="noreferrer"
-              className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 hover:underline underline-offset-2"
-              onClick={handleClickLostPassword}
-            >
-              {T["Lost your password?"]}
-            </a>
-          </p>
+          [mailpoet_form id="1"]
+          
         </div>
       </div>
+
+
+      // <div className="flex min-h-full flex-1 flex-col justify-center py-2.5 sm:p-6 lg:pb-8">
+      //   <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+      //     <Logo className="block w-full text-center" imageClassName="mx-auto" />
+      //     <div className="text-center">
+      //       <h2 className="mt-5 sm:mt-7 text-center text-xl md:text-2xl font-semibold leading-9 tracking-tight text-neutral-900 dark:text-neutral-200">
+      //         {T["Quick Quote"]}
+      //       </h2>
+            
+      //     </div>
+      //   </div>
+      //   <div className="mt-5 sm:mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+      //     <div className="grid gap-6">
+      //       <form
+      //         onSubmit={(e) => {
+      //           e.preventDefault();
+
+      //           if (
+      //             !e.currentTarget.username?.value ||
+      //             !e.currentTarget.password?.value
+      //           ) {
+      //             toast.error("Username and password are required!", {
+      //               position: "bottom-center",
+      //             });
+      //             return;
+      //           }
+
+      //           login(
+      //             e.currentTarget.username.value,
+      //             e.currentTarget.password.value
+      //             // "/"
+      //           );
+      //         }}
+      //       >
+      //         <div className="grid gap-4">
+      //           <div className="grid gap-1.5">
+      //             <Label htmlFor="email">{T.Username}</Label>
+      //             <Input
+      //               id="username"
+      //               name="username"
+      //               placeholder="Email or username"
+      //               autoCapitalize="none"
+      //               autoComplete="username"
+      //               autoCorrect="off"
+      //               type="text"
+      //               required
+      //               defaultValue={IS_CHISNGHIAX_DEMO_SITE ? "demo" : undefined}
+      //             />
+      //           </div>
+      //           <div className="grid gap-1.5">
+      //             <Label htmlFor="password">{T.Password}</Label>
+      //             <Input
+      //               id="password"
+      //               type="password"
+      //               required
+      //               defaultValue={IS_CHISNGHIAX_DEMO_SITE ? "demo" : undefined}
+      //             />
+      //           </div>
+      //           <div className="grid">
+      //             <ButtonPrimary loading={loading}>{T.Login}</ButtonPrimary>
+      //             {!!errorMessage && (
+      //               <Error className="text-center mt-2" error={errorMessage} />
+      //             )}
+      //           </div>
+      //         </div>
+      //       </form>
+      //     </div>
+
+      //     <p className="mt-5 sm:mt-10 text-center text-sm leading-6 text-neutral-500 dark:text-neutral-400">
+      //       {T["Not a member?"]}?{" "}
+      //       <Link
+      //         href="/sign-up"
+      //         className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 hover:underline underline-offset-2"
+      //         onClick={closeModal}
+      //       >
+      //         {T["Sign up"]}!
+      //       </Link>
+      //       <span className="mx-1">|</span>
+      //       <a
+      //         href={
+      //           NC_SITE_SETTINGS.signIn_page.lost_password
+      //             .url_lostpassword_default_of_wp
+      //         }
+      //         target="_blank"
+      //         rel="noreferrer"
+      //         className="font-medium text-primary-600 hover:text-primary-500 dark:text-primary-400 hover:underline underline-offset-2"
+      //         onClick={handleClickLostPassword}
+      //       >
+      //         {T["Lost your password?"]}
+      //       </a>
+      //     </p>
+      //   </div>
+      // </div>
     );
   };
 
