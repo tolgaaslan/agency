@@ -8,8 +8,8 @@ export default function Page404Content() {
   return (
     <div className="">
       <SEO
-        title={"This page does not exist (404)"}
-        description={"Sorry, we couldn’t find the page you’re looking for."}
+        title={"Sayfayı Kaybettik! (404)"}
+        description={"Aradığınız içerik artık burada değil!"}
       />
 
       <main className="mx-auto w-full max-w-7xl px-6 pb-16 pt-5 sm:pb-20 lg:px-8">
