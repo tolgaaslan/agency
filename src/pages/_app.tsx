@@ -13,6 +13,7 @@ import { Toaster } from "react-hot-toast";
 import NextNProgress from "nextjs-progressbar";
 import themeJson from "../../theme.json";
 
+
 const poppins = Poppins({
   subsets: ["latin"],
   display: "swap",

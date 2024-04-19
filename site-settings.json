@@ -9,7 +9,7 @@
     "description": "Aura Ajans 2018 yılından bu yana markaların dijitalleşme süreçlerinde profesyonel destek vermek amacıyla kurulmuş kreatif bir dijital marka ve reklam ajansıdır.",
     "placeholder": "Bülten aboneliği, E-Posta ?",
     "success_message": "Thank you for subscribing. You're in!",
-    "error_message": "Something went wrong. Please try again. If the problem persists, you can contact me."
+    "error_message": "Bir şeyler yanlış gitti. Lütfen tekrar deneyin. Sorun devam ederse benimle iletişime geçebilirsiniz."
   },
   "newsletter_section": {
     "enable": true,
@@ -30,8 +30,8 @@
 
   "top_category_section": {
     "enable": true,
-    "title": "Discover top 10 categories",
-    "sub_title": "Let's explore the most popular categories"
+    "title": "İşte Bazı Kategoriler",
+    "sub_title": "Daha fazlasını keşfet, bizimle çalışmadan önce bizi tanı!"
   },
 
   "site_info": {

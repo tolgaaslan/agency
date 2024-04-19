@@ -253,6 +253,7 @@
   --highlight-color: #6e5858;
 }
 
+
 @media (max-width: 1024px) {
   .mobile-d-none {
     display:none;
@@ -283,9 +284,7 @@
   max-width: 100%!important;
 }
 
-.ncmazfc-block-heading__subHeading {
-  margin: 1rem auto;
-}
+
 .lg\:prose-lg :where(h4):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   margin-top: 0.577778em;
 }
@@ -294,3 +293,4 @@
   color: #fff !important;
   padding:10px!important;
 }
+

@@ -24,10 +24,10 @@ export default function Page404Content() {
         </div>
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
-            Page not found
+            Sayfayı Kaybettik!
           </h1>
           <p className="mt-4 text-base leading-7 text-gray-600 dark:text-neutral-400">
-            Sorry, we couldn’t find the page you’re looking for.
+            Üzgünüz en son sitemizi güncellemiştik, fakat bu sayfayı atladık veya url yapısını değiştirdik :( Şimdilik yapacak pek bir şey yok gibi aradığın şey artık burada değil! Fakat ana sayfa'ya dönüp yinede bir araştırabilirsin.
           </p>
           <div className="mt-10 flex justify-center">
             <Link
@@ -37,7 +37,7 @@ export default function Page404Content() {
               <span className="me-2 rtl:rotate-180" aria-hidden="true">
                 &larr;
               </span>
-              Back to home
+              Ana Sayfa'ya Dön
             </Link>
           </div>
         </div>
