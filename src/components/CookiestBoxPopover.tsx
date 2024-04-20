@@ -39,8 +39,7 @@ export default function CookiestBoxPopover() {
           <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-black ring-opacity-5">
             <div className="bg-white dark:bg-black px-4 sm:px-5 py-5 sm:py-7 text-xs grid">
               <span>
-                This website uses cookies to ensure you receive the best
-                possible experience.{" "}
+                Bu web sitesi daha iyi hizmet almanızı sağlamak için çerezleri kullanır. Detaylar için <a href="https://www.auraajans.net/cerez-politikasi/" name="Çerez politikaları">Çerez Politikalarını</a> inceleyin.{" "}
                 <Link
                   className="text-neutral-900 underline underline-offset-2 font-medium"
                   href={NC_SITE_SETTINGS.cookies_policy_page.uri || "#"}
@@ -55,7 +54,7 @@ export default function CookiestBoxPopover() {
                 fontSize="text-xs font-medium"
                 onClick={handleAccept}
               >
-                <span>Accept</span>
+                <span>Kabul Et</span>
               </ButtonPrimary>
             </div>
           </div>
