@@ -37,7 +37,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               font-family: ${poppins.style.fontFamily};
             }
           `}</style>
-          <NextNProgress color="#818cf8" />
+          
+          
+          <NextNProgress color="#c91415" />
+  
+
+
           <Component {...pageProps} key={router.asPath} />
           <Toaster
             position="bottom-left"
