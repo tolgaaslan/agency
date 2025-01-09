@@ -70,7 +70,7 @@ const Tag: FaustTemplate<PageTagGetTagQuery> = (props) => {
                   <div className="flex items-center text-sm font-medium space-x-2 rtl:space-x-reverse cursor-pointer text-neutral-500 dark:text-neutral-400 ">
                     <FireIcon className="w-5 h-5" />
                     <span className="text-neutral-700 dark:text-neutral-300">
-                      {count || 0} Proje
+                      {count || 0} Articles
                     </span>
                   </div>
                   <span className="block text-sm sm:text-base text-neutral-500 dark:text-neutral-400">

@@ -28,6 +28,8 @@ const SingleType5: FC<Props> = ({ post }) => {
           width={featuredImage?.mediaDetails?.width || 1000}
           height={featuredImage?.mediaDetails?.height || 750}
           sizes="(max-width: 1024px) 100vw, 1280px"
+          priority
+          enableDefaultPlaceholder
         />
       </header>
     </>

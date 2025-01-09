@@ -23,6 +23,8 @@ export default function SEO({ title, description, imageUrl, url }: Props) {
     return null;
   }
 
+  const descriptionNoHtmlTags = description?.replace(/<[^>]*>?/gm, "") || "";
+
   return (
     <>
       <Head>
@@ -38,11 +40,14 @@ export default function SEO({ title, description, imageUrl, url }: Props) {
           </>
         )}
 
-        {description && (
+        {!!descriptionNoHtmlTags && (
           <>
-            <meta name="description" content={description} />
-            <meta property="og:description" content={description} />
-            <meta property="twitter:description" content={description} />
+            <meta name="description" content={descriptionNoHtmlTags} />
+            <meta property="og:description" content={descriptionNoHtmlTags} />
+            <meta
+              property="twitter:description"
+              content={descriptionNoHtmlTags}
+            />
           </>
         )}
 

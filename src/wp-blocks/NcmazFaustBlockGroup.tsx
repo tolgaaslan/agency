@@ -8,16 +8,24 @@ import React from "react";
 //
 const NcmazFaustBlockGroup: WordPressBlock<
   NcmazFaustBlockGroupFragmentFragment
-> = (props) => {
+> = (defaultProps) => {
+  const props = {
+    ...(defaultProps || {}),
+    attributes: defaultProps?.aliasAttributes,
+  };
+
   // get the BlocksTheme object
   const theme = useBlocksTheme();
   const style = getStyles(theme, { ...props });
 
-  const { attributes } = props || {};
+  const { aliasAttributes: attributes } = props || {};
   const { className, hasBackground, variation } = attributes || {};
 
   return (
-    <div className={`relative not-prose ${className || ""}`} style={style}>
+    <div
+      className={`NcmazFaustBlockGroup relative not-prose ${className || ""}`}
+      style={style}
+    >
       {hasBackground && (
         <BackgroundSection
           className={classNames(
@@ -42,7 +50,7 @@ const NcmazFaustBlockGroup: WordPressBlock<
 export const NcmazFaustBlockGroupFragments = {
   entry: gql`
     fragment NcmazFaustBlockGroupFragment on NcmazFaustBlockGroup {
-      attributes {
+      aliasAttributes: attributes {
         style
         variation
         hasBackground

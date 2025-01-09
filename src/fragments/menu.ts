@@ -1,8 +1,9 @@
-import { gql } from "@/__generated__";
+import { gql } from '@/__generated__'
 
 export const NC_PRIMARY_MENU_QUERY_FRAGMENT = gql(`
     fragment NcPrimaryMenuFieldsFragment on MenuItem {  
         id  
+        target
         uri
         path  
         label
@@ -45,15 +46,16 @@ export const NC_PRIMARY_MENU_QUERY_FRAGMENT = gql(`
           }
       }
     }
-`);
+`)
 
 export const NC_FOOTER_MENU_QUERY_FRAGMENT = gql(`
 fragment NcFooterMenuFieldsFragment on MenuItem {
       databaseId
       uri
       label
+      target
       parentId
       databaseId
       id
 }
-`);
+`)

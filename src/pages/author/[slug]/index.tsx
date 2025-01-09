@@ -1,42 +1,47 @@
-import { GetStaticPropsContext } from "next";
-import { FaustPage, getNextStaticProps } from "@faustwp/core";
-import { gql } from "@/__generated__";
-import { GetAuthorWithPostsQuery } from "@/__generated__/graphql";
-import { GET_POSTS_FIRST_COMMON } from "@/contains/contants";
-import React from "react";
-import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
-import AuthorPostsChild from "@/container/author/AuthorPostsChild";
+import { GetStaticPropsContext } from 'next'
+import { FaustPage, getNextStaticProps } from '@faustwp/core'
+import { gql } from '@/__generated__'
+import { GetAuthorWithPostsQuery } from '@/__generated__/graphql'
+import { GET_POSTS_FIRST_COMMON, REVALIDATE_TIME } from '@/contains/contants'
+import React from 'react'
+import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
+import AuthorPostsChild from '@/container/author/AuthorPostsChild'
+import Page404Content from '@/container/404Content'
 
 const Page: FaustPage<GetAuthorWithPostsQuery> = (props) => {
-  return (
-    <>
-      {/* @ts-ignore */}
-      <AuthorPostsChild {...(props || [])} />
-    </>
-  );
-};
+	if (!props.data?.user) {
+		return <Page404Content />
+	}
+
+	return (
+		<>
+			{/* @ts-ignore */}
+			<AuthorPostsChild {...(props || [])} />
+		</>
+	)
+}
 
 export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
+	return {
+		paths: [],
+		fallback: 'blocking',
+	}
 }
 export function getStaticProps(ctx: GetStaticPropsContext) {
-  return getNextStaticProps(ctx, {
-    Page,
-    revalidate: 900,
-  });
+	return getNextStaticProps(ctx, {
+		Page,
+		revalidate: REVALIDATE_TIME,
+	})
 }
 
 Page.variables = ({ params }) => {
-  return {
-    id: params?.slug,
-    first: GET_POSTS_FIRST_COMMON,
-    headerLocation: PRIMARY_LOCATION,
-    footerLocation: FOOTER_LOCATION,
-  };
-};
+	return {
+		id: params?.slug,
+		first: GET_POSTS_FIRST_COMMON,
+		headerLocation: PRIMARY_LOCATION,
+		footerLocation: FOOTER_LOCATION,
+	}
+}
 
 Page.query = gql(`
   query GetAuthorWithPosts($id: ID!, $first: Int, $headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
@@ -73,6 +78,6 @@ Page.query = gql(`
     }
     # end common query for all page
   }
-`);
+`)
 
-export default Page;
+export default Page
