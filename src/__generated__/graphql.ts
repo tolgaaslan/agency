@@ -1144,6 +1144,58 @@ export type Connection = {
   pageInfo: PageInfo;
 };
 
+/** A block used for editing the site */
+export type ContactForm7ContactFormSelector = EditorBlock & PageEditorBlock & PostEditorBlock & {
+  __typename?: 'ContactForm7ContactFormSelector';
+  /** The API version of the Gutenberg Block */
+  apiVersion?: Maybe<Scalars['Int']['output']>;
+  /** Attributes of the ContactForm7ContactFormSelector Block Type */
+  attributes?: Maybe<ContactForm7ContactFormSelectorAttributes>;
+  /** The name of the category the Block belongs to */
+  blockEditorCategoryName?: Maybe<Scalars['String']['output']>;
+  /** The id of the Block */
+  clientId?: Maybe<Scalars['String']['output']>;
+  /** CSS Classnames to apply to the block */
+  cssClassNames?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  /** The inner blocks of the Block */
+  innerBlocks?: Maybe<Array<Maybe<EditorBlock>>>;
+  /** Whether the block is Dynamic (server rendered) */
+  isDynamic: Scalars['Boolean']['output'];
+  /** The name of the block */
+  name?: Maybe<Scalars['String']['output']>;
+  /** The parent id of the Block */
+  parentClientId?: Maybe<Scalars['String']['output']>;
+  /** The rendered HTML for the block */
+  renderedHtml?: Maybe<Scalars['String']['output']>;
+  /** The (GraphQL) type of the block */
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+/** Attributes of the ContactForm7ContactFormSelector Block Type */
+export type ContactForm7ContactFormSelectorAttributes = {
+  __typename?: 'ContactForm7ContactFormSelectorAttributes';
+  /** The &quot;className&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  className?: Maybe<Scalars['String']['output']>;
+  /** The &quot;hash&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  hash?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlClass&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  htmlClass?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlId&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  htmlId?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlName&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  htmlName?: Maybe<Scalars['String']['output']>;
+  /** The &quot;htmlTitle&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  htmlTitle?: Maybe<Scalars['String']['output']>;
+  /** The &quot;id&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  id?: Maybe<Scalars['Int']['output']>;
+  /** The &quot;lock&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  lock?: Maybe<Scalars['BlockAttributesObject']['output']>;
+  /** The &quot;metadata&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  metadata?: Maybe<Scalars['BlockAttributesObject']['output']>;
+  /** The &quot;title&quot; field on the &quot;ContactForm7ContactFormSelectorAttributes&quot; block or block attributes */
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 /** Nodes used to manage content */
 export type ContentNode = {
   /** @deprecated Deprecated in favor of using Next.js pages */
@@ -11745,7 +11797,7 @@ export enum PluginStatusEnum {
 }
 
 /** The post type */
-export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfNcPostMetaData & WithAcfNcmazAudioUrl & WithAcfNcmazGalleryImgs & WithAcfNcmazVideoUrl & WithAcfSss & {
+export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithAuthor & NodeWithComments & NodeWithContentEditor & NodeWithEditorBlocks & NodeWithExcerpt & NodeWithFeaturedImage & NodeWithPostEditorBlocks & NodeWithRevisions & NodeWithTemplate & NodeWithTitle & NodeWithTrackbacks & Previewable & UniformResourceIdentifiable & WithAcfNcPostMetaData & WithAcfNcmazAudioUrl & WithAcfNcmazGalleryImgs & WithAcfNcmazVideoUrl & {
   __typename?: 'Post';
   /**
    * The ancestors of the content node.
@@ -11870,8 +11922,6 @@ export type Post = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & 
   revisions?: Maybe<PostToRevisionConnection>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
   slug?: Maybe<Scalars['String']['output']>;
-  /** Fields of the Sss ACF Field Group */
-  sss?: Maybe<Sss>;
   /** The current status of the object */
   status?: Maybe<Scalars['String']['output']>;
   /** Connection between the Post type and the tag type */
@@ -15723,29 +15773,6 @@ export type Settings = {
   writingSettingsUseSmilies?: Maybe<Scalars['Boolean']['output']>;
 };
 
-/** The &quot;Sss&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type Sss = AcfFieldGroup & AcfFieldGroupFields & Sss_Fields & {
-  __typename?: 'Sss';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Sss&quot; Field Group */
-  dsds?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Interface representing fields of the ACF &quot;Sss&quot; Field Group */
-export type Sss_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Sss&quot; Field Group */
-  dsds?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
 /** The tag type */
 export type Tag = DatabaseIdentifier & MenuItemLinkable & Node & TermNode & UniformResourceIdentifiable & {
   __typename?: 'Tag';
@@ -16248,29 +16275,15 @@ export type TaxonomyToTermNodeConnectionPageInfo = PageInfo & TermNodeConnection
 };
 
 /** The template assigned to the node */
-export type Template_PageNoTitle = ContentTemplate & {
-  __typename?: 'Template_PageNoTitle';
+export type Template_Blank = ContentTemplate & {
+  __typename?: 'Template_Blank';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
 
 /** The template assigned to the node */
-export type Template_PageWithSidebar = ContentTemplate & {
-  __typename?: 'Template_PageWithSidebar';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
-/** The template assigned to the node */
-export type Template_PageWithWideImage = ContentTemplate & {
-  __typename?: 'Template_PageWithWideImage';
-  /** The name of the template */
-  templateName?: Maybe<Scalars['String']['output']>;
-};
-
-/** The template assigned to the node */
-export type Template_SingleWithSidebar = ContentTemplate & {
-  __typename?: 'Template_SingleWithSidebar';
+export type Template_BlogAlternative = ContentTemplate & {
+  __typename?: 'Template_BlogAlternative';
   /** The name of the template */
   templateName?: Maybe<Scalars['String']['output']>;
 };
@@ -18299,12 +18312,6 @@ export type WithAcfNcmazfaustMenu = {
   ncmazfaustMenu?: Maybe<NcmazfaustMenu>;
 };
 
-/** Provides access to fields of the &quot;Sss&quot; ACF Field Group via the &quot;sss&quot; field */
-export type WithAcfSss = {
-  /** Fields of the Sss ACF Field Group */
-  sss?: Maybe<Sss>;
-};
-
 /** Provides access to fields of the &quot;UserReactionFields&quot; ACF Field Group via the &quot;userReactionFields&quot; field */
 export type WithAcfUserReactionFields = {
   /** Fields of the UserReactionFields ACF Field Group */
@@ -19192,7 +19199,7 @@ export type GetPageQueryVariables = Exact<{
 }>;
 
 
-export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
+export type GetPageQuery = { __typename?: 'RootQuery', page?: { __typename?: 'Page', title?: string | null, ncPageMeta?: { __typename?: 'NcPageMeta', isFullWithPage?: boolean | null } | null, featuredImage?: { __typename?: 'NodeWithFeaturedImageToMediaItemConnectionEdge', node: { __typename?: 'MediaItem', altText?: string | null, sourceUrl?: string | null } } | null, editorBlocks?: Array<{ __typename: 'ContactForm7ContactFormSelector', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreArchives', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAudio', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreAvatar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreBlock', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButton', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreButtons', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCalendar', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCategories', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | { __typename: 'CoreCode', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null } | (
       { __typename: 'CoreColumn', renderedHtml?: string | null, clientId?: string | null, parentClientId?: string | null }
       & { ' $fragmentRefs'?: { 'CoreColumnFragmentFragment': CoreColumnFragmentFragment } }
     ) | (

@@ -22,6 +22,12 @@ module.exports = withFaust({
     ],
     remotePatterns: [
       {
+				protocol: 'http',
+				hostname: 'localhost',
+				port: '',
+				pathname: '/**',
+			},
+      {
         protocol: "https",
         hostname: getWpHostname(),
         port: "",
