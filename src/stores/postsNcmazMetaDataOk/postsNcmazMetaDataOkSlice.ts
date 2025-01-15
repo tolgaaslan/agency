@@ -1,5 +1,7 @@
-import { NcmazFcPostMetaFullFieldsFragment } from "@/__generated__/graphql";
-import { TPostCard } from "@/components/Card2/Card2";
+import {
+  NcmazFcPostMetaFullFieldsFragment,
+  QueryGetPostsNcmazMetadataByIdsQuery,
+} from "@/__generated__/graphql";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -8,7 +10,7 @@ type TState = Record<
   {
     databaseId: number;
     commentCount: number;
-    ncPostMetaData: NcmazFcPostMetaFullFieldsFragment;
+    ncPostMetaData: Partial<NcmazFcPostMetaFullFieldsFragment>;
   }
 >;
 
@@ -24,16 +26,11 @@ export const postsNcmazMetaDataOkSlice = createSlice({
     },
     updatePostsNcmazMetaDataOk: (
       state,
-      action: PayloadAction<
-        {
-          databaseId: number;
-          ncPostMetaData:
-            | TPostCard["ncPostMetaData"]
-            | NcmazFcPostMetaFullFieldsFragment;
-        }[]
-      >
+      action: PayloadAction<QueryGetPostsNcmazMetadataByIdsQuery["posts"]>
     ) => {
-      const newState = action.payload.reduce((acc, cur) => {
+      const nodes = action?.payload?.nodes || [];
+
+      const newState = nodes.reduce((acc, cur) => {
         return {
           ...acc,
           [cur.databaseId]: cur,

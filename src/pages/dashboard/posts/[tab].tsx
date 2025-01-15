@@ -27,6 +27,7 @@ import DashboardLayout, {
 } from "@/container/DashboardLayout";
 import { useSelector } from "react-redux";
 import { RootState } from "@/stores/store";
+import getTrans from "@/utils/getTrans";
 
 const Page: FaustPage<{}> = () => {
   const { isReady, isAuthenticated } = useSelector(
@@ -36,6 +37,7 @@ const Page: FaustPage<{}> = () => {
   const client = getApolloAuthClient();
   const currentTab: TDashBoardPostTab =
     (router.query.tab as TDashBoardPostTab) || "published";
+  const T = getTrans();
 
   const [refetchTimes, setRefetchTimes] = React.useState(0);
 
@@ -166,12 +168,12 @@ const Page: FaustPage<{}> = () => {
 
     if (!posts.length) {
       return (
-        <Empty className="text-center p-5 ring-1 ring-primary-600/20 rounded-lg" />
+        <Empty className="text-center px-5 py-8 ring-1 ring-neutral-200 rounded-lg" />
       );
     }
 
     return (
-      <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="-mx-4 -my-2 overflow-x-auto min-h-[60vh] sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <table className="min-w-full divide-y divide-gray-300 dark:divide-neutral-600">
             <thead>
@@ -180,37 +182,37 @@ const Page: FaustPage<{}> = () => {
                   scope="col"
                   className="py-3.5 pl-4 pr-3 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400 sm:pl-0 capitalize"
                 >
-                  Post
+                  {T.Post}
                 </th>
                 <th
                   scope="col"
                   className="px-3 py-3.5 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400"
                 >
-                  Likes
+                  {T.Likes}
                 </th>
                 <th
                   scope="col"
                   className="px-3 py-3.5 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400"
                 >
-                  Categories
+                  {T.Categories}
                 </th>
                 <th
                   scope="col"
                   className="px-3 py-3.5 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400"
                 >
-                  Views
+                  {T.Views}
                 </th>
                 <th
                   scope="col"
                   className="px-3 py-3.5 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400"
                 >
-                  Saveds
+                  {T.Saveds}
                 </th>
                 <th
                   scope="col"
                   className="px-3 py-3.5 text-start text-sm font-normal text-neutral-600 dark:text-neutral-400"
                 >
-                  Comments
+                  {T.Comments}
                 </th>
                 <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
                   <span className="sr-only">Edit</span>
@@ -218,12 +220,16 @@ const Page: FaustPage<{}> = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200 dark:divide-neutral-600">
-              {posts.map((item) => {
+              {posts.map((item, index, arr) => {
                 const post = getPostDataFromPostFragment(item);
+                let postUrl = post.uri;
+                if (post.status !== "publish") {
+                  postUrl = `/preview${post.uri}&preview=true&previewPathname=post`;
+                }
                 return (
                   <tr key={post.databaseId}>
                     <td className="whitespace-nowrap py-4 sm:py-5 ps-4 pe-3 text-sm sm:ps-0">
-                      <Link href={post.uri} className="flex items-center">
+                      <Link href={postUrl} className="flex items-center">
                         <div className="h-12 w-12 sm:h-16 sm:w-16 relative flex-shrink-0">
                           <MyImage
                             src={post.featuredImage?.sourceUrl || ""}
@@ -285,6 +291,9 @@ const Page: FaustPage<{}> = () => {
                         containerClassName="h-8 w-8 bg-neutral-50 hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-700 rounded-xl"
                         iconClass="h-5 w-5"
                         post={item}
+                        dropdownPositon={
+                          index > 2 && index === arr.length - 1 ? "up" : "down"
+                        }
                       />
                     </td>
                   </tr>
@@ -302,7 +311,7 @@ const Page: FaustPage<{}> = () => {
                       loading={getPostsOfViewerResult.loading}
                       onClick={handleClickLoadmore}
                     >
-                      Load more
+                      {T["Load more"]}
                     </ButtonPrimary>
                   </td>
                 )}
@@ -321,10 +330,10 @@ const Page: FaustPage<{}> = () => {
           <div className="sm:flex sm:items-center">
             <div className="sm:flex-auto">
               <h1 className="text-lg font-semibold text-gray-900 dark:text-neutral-200 capitalize">
-                {currentTab} Posts
+                {currentTab} {T["Posts"]}
               </h1>
               <p className="mt-2 text-sm text-gray-700 dark:text-neutral-400">
-                A list of all your posts. Let’s get you some views! 🚀
+                {T["A list of all your posts. Let’s get you some views! 🚀"]}
               </p>
             </div>
           </div>

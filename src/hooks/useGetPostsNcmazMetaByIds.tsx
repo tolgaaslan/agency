@@ -1,71 +1,65 @@
-import { gql } from "@/__generated__";
 import { TPostCard } from "@/components/Card2/Card2";
+import { CMSPostsNcmazMetaByIdsResponseData } from "@/pages/api/posts-ncmaz-meta-by-ids/[...ids]";
 import { updatePostsNcmazMetaDataOk } from "@/stores/postsNcmazMetaDataOk/postsNcmazMetaDataOkSlice";
-import { useQuery } from "@apollo/client";
+import { RootState } from "@/stores/store";
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 interface Props {
   posts?: TPostCard[];
 }
 
 export default function useGetPostsNcmazMetaByIds(props: Props) {
-  const [refetchTimes, setRefetchTimes] = useState(0);
+  const { isReady, isAuthenticated } = useSelector(
+    (state: RootState) => state.viewer.authorizedUser
+  );
+
+  const isLogedIn = isReady && isAuthenticated === true;
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [isFetchAPI, setIsFetchAPI] = useState(false);
 
   const dispatch = useDispatch();
 
-  let IDS = props.posts?.map((post) => post.databaseId.toString());
+  const IDS = props.posts?.map((post) => post.databaseId.toString());
+  const IDsString = IDS?.join("/") || "";
 
+  const loading = isLoading;
   const DOM_ID_LOADING = IDS?.length
     ? "getPostsNcmazMetaByIds_loading_" + IDS.join("_")
     : null;
 
-  const { data, loading, error, called, refetch } = useQuery(
-    gql(/* GraphQL */ `
-      query QueryGetPostsNcmazMetadataByIds(
-        $in: [ID] = null
-        $first: Int = 100
-        $after: String = null
-      ) {
-        posts(first: $first, after: $after, where: { in: $in }) {
-          nodes {
-            databaseId
-            commentCount
-            ncPostMetaData {
-              ...NcmazFcPostMetaFullFields
-            }
-          }
-        }
-      }
-    `),
-    {
-      variables: {
-        in: IDS,
-      },
-      skip: !IDS?.length,
-      notifyOnNetworkStatusChange: true,
-      context: {
-        fetchOptions: {
-          method: process.env.NEXT_PUBLIC_SITE_API_METHOD || "GET",
-        },
-      },
-      fetchPolicy: "cache-and-network",
-      onCompleted: (data) => {
-        // @ts-ignore
-        dispatch(updatePostsNcmazMetaDataOk(data?.posts?.nodes || []));
-      },
-      onError: (error) => {
-        if (refetchTimes > 3) {
-          return;
-        }
-        setRefetchTimes(refetchTimes + 1);
-        refetch();
-      },
+  // Why?
+  // With the ISR feature of nextjs, when liking, saving, updating... posts, it can take up to 15 minutes for the data to update
+  // This affects post-like, so every time a post is rendered, you need to retrieve the PostLike data (count, isLiked,...)
+  useEffect(() => {
+    if (!isLogedIn || isFetchAPI || !IDsString) {
+      return;
     }
-  );
+    setIsFetchAPI(true);
+
+    const getPosts = async () => {
+      setIsLoading(true);
+      await fetch(`/api/posts-ncmaz-meta-by-ids/${IDsString}`)
+        .then((res) => res.json())
+        .then((data: CMSPostsNcmazMetaByIdsResponseData) => {
+          if (data?.data?.posts?.nodes?.length) {
+            dispatch(updatePostsNcmazMetaDataOk(data?.data?.posts));
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    };
+
+    getPosts();
+  }, [IDsString, isLogedIn, isFetchAPI]);
 
   useEffect(() => {
-    if (typeof window === "undefined" || !DOM_ID_LOADING) {
+    if (typeof window === "undefined" || !DOM_ID_LOADING || !isLogedIn) {
       return;
     }
 
@@ -84,14 +78,15 @@ export default function useGetPostsNcmazMetaByIds(props: Props) {
     document.body.appendChild(likeActionNode);
 
     return () => {
-      document.body.removeChild(likeActionNode);
+      // remove likeActionNode when unmount
+      const loadingDom = document.getElementById(DOM_ID_LOADING);
+      if (loadingDom) {
+        document.body.removeChild(loadingDom);
+      }
     };
-  }, [loading]);
+  }, [loading, isLogedIn]);
 
   return {
     loading,
-    data,
-    error,
-    called,
   };
 }

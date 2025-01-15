@@ -7,17 +7,26 @@ import { NC_POST_FULL_FRAGMENT } from "@/fragments";
 
 export interface SingleType1Props {
   post: FragmentType<typeof NC_POST_FULL_FRAGMENT>;
-  
   showRightSidebar?: boolean;
 }
 
 const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
   //
-  const { title, content, date, author, databaseId, excerpt, featuredImage } =
-    getPostDataFromPostFragment(post || {});
+  const {
+    title,
+    content,
+    date,
+    author,
+    databaseId,
+    excerpt,
+    featuredImage,
+    ncPostMetaData,
+  } = getPostDataFromPostFragment(post || {});
   //
   const hasFeaturedImage = !!featuredImage?.sourceUrl;
 
+  const imgWidth = featuredImage?.mediaDetails?.width || 1000;
+  const imgHeight = featuredImage?.mediaDetails?.height || 750;
   return (
     <>
       <div className={`nc-PageSingle pt-8 lg:pt-16`}>
@@ -41,12 +50,17 @@ const SingleType1: FC<SingleType1Props> = ({ post, showRightSidebar }) => {
           <NcImage
             alt={title}
             containerClassName="container my-10 sm:my-12"
-            className="w-full rounded-xl"
+            className={`rounded-xl mx-auto ${
+              imgWidth <= 768 && ncPostMetaData?.showRightSidebar
+                ? "w-full max-w-screen-md"
+                : ""
+            }`}
             src={featuredImage?.sourceUrl || ""}
-            width={featuredImage?.mediaDetails?.width || 1000}
-            height={featuredImage?.mediaDetails?.height || 750}
+            width={imgWidth}
+            height={imgHeight}
             sizes={"(max-width: 1024px) 100vw, 1280px"}
             priority
+            enableDefaultPlaceholder
           />
         )}
       </div>

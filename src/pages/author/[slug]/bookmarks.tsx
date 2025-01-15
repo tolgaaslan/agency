@@ -1,40 +1,41 @@
-import { GetStaticPropsContext } from "next";
-import { FaustPage, getNextStaticProps } from "@faustwp/core";
-import { gql } from "@/__generated__";
-import { PageAuthorBookmarksGetDataQuery } from "@/__generated__/graphql";
-import React from "react";
-import { FOOTER_LOCATION, PRIMARY_LOCATION } from "@/contains/menu";
-import AuthorSaveChild from "@/container/author/AuthorSaveChild";
+import { GetStaticPropsContext } from 'next'
+import { FaustPage, getNextStaticProps } from '@faustwp/core'
+import { gql } from '@/__generated__'
+import { PageAuthorBookmarksGetDataQuery } from '@/__generated__/graphql'
+import React from 'react'
+import { FOOTER_LOCATION, PRIMARY_LOCATION } from '@/contains/menu'
+import AuthorSaveChild from '@/container/author/AuthorSaveChild'
+import { REVALIDATE_TIME } from '@/contains/contants'
 
 const Page: FaustPage<PageAuthorBookmarksGetDataQuery> = (props) => {
-  return (
-    <>
-      {/* @ts-ignore */}
-      <AuthorSaveChild {...(props || {})} />
-    </>
-  );
-};
+	return (
+		<>
+			{/* @ts-ignore */}
+			<AuthorSaveChild {...(props || {})} />
+		</>
+	)
+}
 
 export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
+	return {
+		paths: [],
+		fallback: 'blocking',
+	}
 }
 export function getStaticProps(ctx: GetStaticPropsContext) {
-  return getNextStaticProps(ctx, {
-    Page,
-    revalidate: 900,
-  });
+	return getNextStaticProps(ctx, {
+		Page,
+		revalidate: REVALIDATE_TIME,
+	})
 }
 
 Page.variables = ({ params }) => {
-  return {
-    id: params?.slug,
-    headerLocation: PRIMARY_LOCATION,
-    footerLocation: FOOTER_LOCATION,
-  };
-};
+	return {
+		id: params?.slug,
+		headerLocation: PRIMARY_LOCATION,
+		footerLocation: FOOTER_LOCATION,
+	}
+}
 
 Page.query = gql(`
   query PageAuthorBookmarksGetData($id: ID!, $headerLocation: MenuLocationEnum!, $footerLocation: MenuLocationEnum!) {
@@ -62,6 +63,6 @@ Page.query = gql(`
     }
     # end common query for all page
   }
-`);
+`)
 
-export default Page;
+export default Page

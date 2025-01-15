@@ -90,7 +90,6 @@ export function getPostDataFromPostFragment(
   );
 
   const ncmazGalleryImgs = [
-    featuredImage,
     ncmazGalleryImg1,
     ncmazGalleryImg2,
     ncmazGalleryImg3,
